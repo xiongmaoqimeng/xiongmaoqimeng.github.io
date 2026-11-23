@@ -1,0 +1,35 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 2 场 · 单韵母 i u ü | 熊猫宝宝拼音音乐会</title><style>
+:root{--bg:#fff8ec;--ink:#24324f;--sub:#6b7690;--card:#fff;--line:#f0e2c8}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif}
+header{padding:18px 16px 14px;color:#fff;background:var(--c)}
+header small{opacity:.9;font-size:14px}
+header h1{margin:4px 0 0;font-size:24px}
+.tip{margin:12px 16px 0;padding:10px 12px;background:#fff;border:1.5px dashed var(--line);border-radius:12px;font-size:14px;color:var(--sub);line-height:1.5}
+main{padding:4px 16px 24px}
+section{margin-top:18px}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.sh h2{margin:0;font-size:17px}
+.all{border:0;background:var(--c);color:#fff;font-size:14px;padding:7px 12px;border-radius:99px;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:10px}
+.b{border:2px solid var(--line);background:var(--card);border-radius:16px;min-height:72px;font-size:30px;font-weight:700;color:var(--ink);
+   font-family:"Andika","Segoe UI","Helvetica Neue",Arial,sans-serif;box-shadow:0 3px 0 var(--line);transition:transform .08s}
+.b:active{transform:translateY(2px);box-shadow:none}
+.b.on{border-color:var(--c);background:var(--c);color:#fff;box-shadow:0 3px 0 rgba(0,0,0,.15)}
+nav{display:flex;flex-wrap:wrap;gap:8px;padding:8px 16px 28px}
+nav a{flex:1 0 28%;text-align:center;text-decoration:none;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:9px 4px;font-size:14px}
+nav a.me{background:var(--c);color:#fff;border-color:var(--c)}
+footer{text-align:center;color:var(--sub);font-size:12px;padding:0 16px 24px}
+</style></head>
+<body style="--c:#f08a3c"><header><small>🐼 熊猫宝宝 · 拼音音乐会</small><h1>第 2 场 · 单韵母 i u ü</h1></header>
+<div class="tip">👆 点一下就念一次，跟着念 3 遍。<br>Tap to listen · Tekan untuk dengar</div>
+<main><section><div class="sh"><h2>认识小歌手</h2><button class="all">▶ 全部听</button></div><div class="grid"><button class="b" data-f="yi1">i</button><button class="b" data-f="wu1">u</button><button class="b" data-f="yu1">ü</button></div></section><section><div class="sh"><h2>唱四声 · i</h2><button class="all">▶ 全部听</button></div><div class="grid"><button class="b" data-f="yi1">ī</button><button class="b" data-f="yi2">í</button><button class="b" data-f="yi3">ǐ</button><button class="b" data-f="yi4">ì</button></div></section><section><div class="sh"><h2>唱四声 · u</h2><button class="all">▶ 全部听</button></div><div class="grid"><button class="b" data-f="wu1">ū</button><button class="b" data-f="wu2">ú</button><button class="b" data-f="wu3">ǔ</button><button class="b" data-f="wu4">ù</button></div></section><section><div class="sh"><h2>唱四声 · ü</h2><button class="all">▶ 全部听</button></div><div class="grid"><button class="b" data-f="yu1">ǖ</button><button class="b" data-f="yu2">ǘ</button><button class="b" data-f="yu3">ǚ</button><button class="b" data-f="yu4">ǜ</button></div></section></main><nav><a href="../1/" class="">第 1 场</a><a href="../2/" class="me">第 2 场</a><a href="../3/" class="">第 3 场</a><a href="../4/" class="">第 4 场</a><a href="../5/" class="">第 5 场</a><a href="../6/" class="">第 6 场</a><a href="../7/" class="">第 7 场</a><a href="../8/" class="">第 8 场</a><a href="../9/" class="">第 9 场</a><a href="../10/" class="">第 10 场</a></nav><footer>一年级华文拼音先修本 · 听读</footer><script>
+const A=new Audio();let q=[],cur=null;
+function mark(b){document.querySelectorAll('.b.on').forEach(x=>x.classList.remove('on'));if(b)b.classList.add('on');cur=b}
+function play(b){q=[];go(b)}
+function go(b){mark(b);A.src='../../audio/'+b.dataset.f+'.mp3';A.play().catch(()=>{})}
+A.onended=()=>{if(q.length){setTimeout(()=>go(q.shift()),450)}else mark(null)};
+document.querySelectorAll('.b').forEach(b=>b.onclick=()=>play(b));
+document.querySelectorAll('.all').forEach(x=>x.onclick=()=>{const bs=[...x.closest('section').querySelectorAll('.b')];q=bs.slice(1);go(bs[0])});
+</script></body></html>
