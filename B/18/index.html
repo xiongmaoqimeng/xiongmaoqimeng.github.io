@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>笔顺动画 · 第十八单元 好多的为什么？</title>
+<style>
+:root{--c:#c0632a;--bg:#f6f8f5;--card:#fff;--fg:#24324f;--muted:#6b7690;--grid:#e7b3a8;--ghost:#e3e8e4;--ink:#24324f;--now:#e2574c;--chip:#eef3ef}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif}
+header{background:var(--c);color:#fff;padding:16px max(16px,env(safe-area-inset-left)) 14px}
+header small{opacity:.9;font-size:14px}
+header h1{margin:4px 0 0;font-size:22px}
+.wrap{max-width:480px;margin:0 auto;padding:14px max(16px,env(safe-area-inset-left)) 28px;display:flex;flex-direction:column;gap:14px}
+.tip{font-size:14px;color:var(--muted);line-height:1.55;background:#fff;border:1.5px dashed #dfe6e1;border-radius:12px;padding:10px 12px}
+.tip b{color:var(--fg)}
+.picker{display:grid;grid-template-columns:repeat(auto-fill,minmax(48px,1fr));gap:7px}
+.picker button{font:700 24px "KaiTi","STKaiti","Kaiti SC",serif;aspect-ratio:1;border:2px solid var(--ghost);background:var(--card);color:var(--fg);border-radius:12px;padding:0;cursor:pointer}
+.picker button[aria-pressed="true"]{border-color:var(--c);color:var(--c);background:var(--chip)}
+.stage{background:var(--card);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:12px;box-shadow:0 3px 0 #e6ece7}
+svg.box{width:100%;aspect-ratio:1;display:block}
+.count{font-size:15px;color:var(--muted)}
+.count b{color:var(--fg);font-size:18px}
+.strokes{display:flex;flex-wrap:wrap;gap:6px}
+.strokes span{font-size:15px;padding:5px 11px;border-radius:99px;background:var(--chip);color:var(--muted)}
+.strokes span.done{color:var(--fg)}
+.strokes span.now{background:var(--now);color:#fff}
+.btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.btns button{font:700 16px inherit;font-family:inherit;padding:13px 4px;border-radius:12px;border:none;cursor:pointer;background:var(--c);color:#fff}
+.btns button.alt{background:var(--chip);color:var(--fg)}
+.en{font-size:12.5px;color:var(--muted);line-height:1.6}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<header><small>熊猫宝宝 · 笔顺描红本 下册 1B · 第十八单元</small><h1>好多的为什么？ · 笔顺动画</h1></header>
+<div class="wrap">
+  <div class="tip">点一个字，看它<b>一笔一笔</b>怎么写。<b>红色</b>那一笔是现在写的，跟着念笔画名称，再在书上描一描 ✏️</div>
+  <div class="picker" id="picker" role="group" aria-label="选字"></div>
+  <div class="stage">
+    <svg class="box" id="box" viewBox="0 0 1024 1024" aria-label="笔顺动画"></svg>
+    <div class="count" id="count"></div>
+    <div class="strokes" id="strokes"></div>
+    <div class="btns">
+      <button id="play" type="button">▶ 播放</button>
+      <button id="step" type="button" class="alt">一笔一笔</button>
+      <button id="say" type="button" class="alt">🔊 读音</button>
+    </div>
+  </div>
+  <p class="en">EN: Tap a character to watch its stroke order. The red stroke is the one being written. "一笔一笔" = one stroke at a time; "读音" = hear it.<br>
+  BM: Tekan satu perkataan untuk lihat urutan strok. Strok merah ialah strok yang sedang ditulis. "一笔一笔" = satu strok demi satu; "读音" = dengar sebutan.</p>
+</div>
+<script>
+const D={"齐":{"s":["M 464 789 Q 503 770 545 743 Q 563 733 579 737 Q 591 741 593 756 Q 594 772 577 803 Q 559 836 447 840 Q 429 840 423 835 Q 419 831 424 816 Q 430 806 464 789 Z","M 616 663 Q 692 673 757 678 Q 769 675 779 690 Q 780 703 756 716 Q 713 741 649 722 Q 451 686 287 668 Q 271 667 254 664 Q 221 661 246 641 Q 283 611 312 616 Q 423 637 568 656 L 616 663 Z","M 545 470 Q 579 513 607 564 Q 626 604 640 615 Q 652 625 645 636 Q 638 651 616 663 C 591 680 564 686 568 656 Q 583 602 504 500 L 483 476 Q 408 403 274 367 Q 220 357 150 347 Q 131 343 151 335 Q 293 298 420 359 Q 477 387 520 441 Q 520 442 521 443 L 545 470 Z","M 521 443 Q 720 280 761 276 Q 765 277 772 277 Q 863 289 936 310 Q 973 320 969 331 Q 968 335 927 341 Q 770 359 732 372 Q 650 397 545 470 L 504 500 Q 467 528 429 559 Q 389 592 356 588 Q 340 587 337 581 Q 336 574 352 566 Q 388 551 411 530 Q 445 508 483 476 L 521 443 Z","M 369 289 Q 393 253 371 149 Q 347 59 251 -9 Q 238 -18 251 -20 Q 297 -20 356 31 Q 377 50 409 103 Q 421 130 443 219 Q 444 240 455 258 Q 464 276 447 284 Q 431 297 416 302 Q 394 315 376 308 Q 363 304 369 289 Z","M 568 322 Q 587 285 572 93 Q 571 86 570 78 Q 564 -31 612 -62 Q 624 -63 629 -50 Q 641 -17 637 13 Q 627 239 636 291 Q 639 304 631 310 Q 607 331 588 340 Q 575 344 566 336 Q 560 332 568 322 Z"],"m":[[[431,829],[542,788],[572,757]],[[247,653],[305,642],[694,702],[740,700],[767,692]],[[575,652],[603,626],[581,571],[522,482],[445,408],[373,370],[302,348],[227,340],[160,342]],[[343,579],[398,562],[562,432],[685,354],[735,330],[775,319],[964,328]],[[379,296],[392,290],[416,262],[408,195],[387,116],[335,39],[300,9],[257,-14]],[[575,330],[606,293],[602,66],[614,-50]]],"n":["点","横","撇","捺","撇","竖"]},"士":{"s":["M 535 412 Q 718 436 872 423 Q 897 420 903 430 Q 910 443 898 456 Q 867 484 821 504 Q 806 510 779 501 Q 713 485 645 475 Q 581 468 536 461 L 482 454 Q 473 457 297 431 Q 231 421 132 418 Q 119 417 117 406 Q 116 393 136 378 Q 154 365 186 353 Q 198 349 216 358 Q 232 364 302 377 Q 383 396 482 407 L 535 412 Z","M 530 159 Q 533 292 535 412 L 536 461 Q 536 650 554 701 Q 566 723 551 736 Q 514 764 484 773 Q 468 777 453 764 Q 447 757 454 745 Q 484 697 482 642 Q 482 551 482 454 L 482 407 Q 482 284 482 153 C 482 123 529 129 530 159 Z","M 482 153 Q 386 141 274 128 Q 252 127 268 107 Q 284 91 303 85 Q 327 78 344 83 Q 443 108 704 108 Q 717 108 731 107 Q 753 106 759 116 Q 765 129 747 144 Q 684 192 614 174 Q 578 168 530 159 L 482 153 Z"],"m":[[[131,404],[197,387],[388,420],[805,467],[890,439]],[[466,755],[482,747],[514,710],[507,201],[506,181],[487,161]],[[271,117],[326,107],[641,143],[687,141],[746,123]]],"n":["横","竖","横"]},"兵":{"s":["M 383 657 Q 524 690 592 719 Q 644 737 689 743 Q 708 743 713 752 Q 717 764 705 778 Q 683 797 633 819 Q 617 829 601 828 Q 592 824 591 812 Q 587 772 368 677 C 341 665 354 650 383 657 Z","M 385 545 Q 384 614 386 633 Q 387 646 383 657 C 381 668 381 668 368 677 Q 340 699 306 707 Q 288 713 278 705 Q 268 698 277 678 Q 305 632 318 581 Q 328 529 352 318 C 355 288 405 293 402 323 Q 392 432 387 507 L 385 545 Z","M 618 531 Q 756 558 762 564 Q 772 573 767 582 Q 760 595 727 605 Q 700 611 591 581 Q 486 556 385 545 C 355 542 357 510 387 507 Q 426 501 524 515 Q 546 519 572 523 L 618 531 Z","M 619 351 Q 646 457 661 487 Q 665 496 649 512 Q 633 524 618 531 C 591 544 560 550 572 523 Q 572 522 574 518 Q 589 494 576 345 C 573 315 612 322 619 351 Z","M 352 318 Q 234 308 106 292 Q 84 291 100 271 Q 116 255 135 249 Q 159 243 176 248 Q 425 311 849 312 Q 874 312 899 311 Q 921 310 927 320 Q 933 333 915 348 Q 857 393 816 384 Q 737 369 619 351 L 576 345 Q 539 341 497 335 Q 451 331 402 323 L 352 318 Z","M 351 201 Q 275 125 153 42 Q 138 29 155 22 Q 203 22 344 109 Q 404 154 427 159 Q 449 166 444 187 Q 437 205 401 239 Q 389 251 376 249 Q 358 245 362 229 Q 366 213 351 201 Z","M 598 200 Q 668 133 750 35 Q 768 11 786 5 Q 796 4 805 15 Q 821 30 808 82 Q 795 148 601 236 Q 591 243 588 228 Q 587 212 598 200 Z"],"m":[[[701,758],[688,765],[623,775],[492,708],[391,672],[382,680]],[[289,693],[324,665],[344,638],[372,357],[381,339],[395,331]],[[393,514],[406,527],[510,537],[715,579],[755,576]],[[580,523],[619,486],[602,372],[582,358]],[[103,281],[158,272],[460,314],[826,349],[862,345],[914,327]],[[376,234],[389,214],[393,189],[284,104],[156,32]],[[601,222],[691,154],[757,92],[774,65],[787,23]]],"n":["撇","竖","横","竖","横","撇","点"]},"别":{"s":["M 247 698 Q 237 705 201 714 Q 188 718 185 712 Q 178 706 186 690 Q 211 630 223 533 Q 224 505 240 484 Q 256 462 263 477 Q 267 489 268 508 L 267 537 Q 258 627 254 663 C 251 693 250 696 247 698 Z","M 459 563 Q 484 651 521 679 Q 537 698 522 715 Q 506 728 452 752 Q 433 759 412 750 Q 361 728 247 698 C 218 690 224 659 254 663 Q 273 664 406 696 Q 421 700 427 694 Q 436 685 433 666 Q 424 615 412 573 C 404 544 450 534 459 563 Z","M 355 516 Q 400 523 468 531 Q 480 532 481 542 Q 481 549 459 563 L 412 573 Q 405 573 397 570 Q 325 548 267 537 C 238 531 239 515 268 508 Q 284 504 299 504 L 355 516 Z","M 304 394 Q 294 394 282 391 Q 197 378 147 378 Q 131 379 129 370 Q 128 361 148 348 Q 172 332 195 339 Q 246 352 299 363 L 349 373 Q 389 380 431 385 Q 447 386 451 378 Q 455 368 453 336 Q 443 222 420 163 Q 408 126 396 114 Q 386 104 363 111 Q 332 124 302 136 Q 281 143 295 123 Q 335 74 357 35 Q 366 14 386 19 Q 401 20 420 40 Q 475 92 505 297 Q 512 343 531 369 Q 547 388 539 398 Q 524 416 492 431 Q 470 444 443 433 Q 404 420 355 406 L 304 394 Z","M 299 363 Q 268 231 134 65 Q 124 55 113 41 Q 107 32 113 31 Q 120 30 130 36 Q 266 127 312 255 Q 333 304 349 373 L 355 406 Q 359 436 377 485 Q 383 495 375 504 Q 369 510 355 516 C 329 530 292 533 299 504 Q 312 455 304 394 L 299 363 Z","M 589 584 Q 622 511 601 321 Q 592 285 623 249 Q 633 239 643 250 Q 665 287 661 333 Q 655 490 663 555 Q 669 577 649 589 Q 633 599 615 607 Q 602 611 593 606 Q 584 599 589 584 Z","M 778 710 Q 784 673 794 104 Q 794 80 781 70 Q 771 63 747 69 Q 719 75 690 80 Q 656 90 659 80 Q 660 73 682 59 Q 757 8 777 -22 Q 799 -58 817 -57 Q 833 -58 846 -21 Q 862 27 857 103 Q 835 350 836 601 Q 837 692 850 740 Q 866 771 808 793 Q 772 812 753 804 Q 734 797 752 773 Q 774 745 778 710 Z"],"m":[[[194,704],[223,675],[252,484]],[[256,669],[268,684],[282,689],[417,724],[449,719],[475,694],[445,598],[419,579]],[[275,530],[285,523],[302,524],[413,549],[471,542]],[[138,368],[185,358],[429,407],[458,409],[483,395],[491,382],[470,245],[452,170],[426,102],[407,79],[386,68],[305,126]],[[308,498],[339,478],[329,394],[298,282],[268,217],[231,157],[170,84],[116,36]],[[602,595],[631,562],[633,256]],[[760,788],[777,780],[811,748],[811,461],[824,75],[804,25],[754,39],[679,72],[677,78],[666,78]]],"n":["竖","横折","横","横折钩","撇","竖","竖钩"]},"原":{"s":["M 563 725 Q 627 735 697 744 Q 763 754 773 762 Q 782 769 778 777 Q 772 789 746 797 Q 718 804 598 774 Q 448 747 339 745 Q 333 745 330 743 C 300 738 312 723 341 716 Q 359 709 422 708 Q 461 714 506 716 L 563 725 Z","M 330 743 Q 282 782 259 774 Q 246 767 253 753 Q 274 725 270 662 Q 249 431 205 310 Q 160 196 75 71 Q 71 64 68 58 Q 65 48 76 49 Q 112 55 198 189 Q 211 214 227 242 Q 297 393 320 596 Q 327 677 341 716 C 346 731 346 731 330 743 Z","M 483 569 Q 570 680 582 689 Q 597 702 584 715 Q 575 721 563 725 C 535 735 496 744 506 716 Q 518 692 490 630 Q 477 599 462 565 C 450 538 464 545 483 569 Z","M 418 558 Q 397 568 376 573 Q 370 574 366 570 Q 359 564 368 555 Q 399 516 417 399 Q 423 342 458 323 L 459 322 Q 474 321 474 345 L 471 369 Q 468 387 461 407 Q 458 422 455 439 L 450 462 Q 443 499 441 527 C 439 548 439 548 418 558 Z","M 652 364 Q 667 345 681 337 Q 691 330 706 351 Q 718 372 742 483 Q 751 514 773 538 Q 786 550 774 563 Q 759 579 717 604 Q 701 613 637 597 Q 595 597 483 569 L 462 565 Q 438 562 418 558 C 388 553 412 519 441 527 Q 516 548 642 564 Q 670 568 679 558 Q 689 546 688 533 Q 672 404 651 395 C 638 379 638 379 652 364 Z","M 455 439 Q 461 438 469 439 Q 557 454 624 463 Q 645 466 637 477 Q 627 490 605 495 Q 584 498 450 462 C 421 454 425 441 455 439 Z","M 578 356 Q 615 362 652 364 C 682 366 680 389 651 395 Q 650 396 648 396 Q 635 399 471 369 C 441 364 444 345 474 345 Q 477 345 481 345 Q 511 349 539 352 L 578 356 Z","M 539 352 Q 563 303 554 123 Q 551 113 550 106 Q 547 90 518 92 Q 484 99 448 104 Q 435 103 435 96 Q 434 90 445 82 Q 523 31 550 0 Q 568 -13 580 -9 Q 590 -5 602 30 Q 617 64 612 127 Q 608 236 611 276 Q 618 319 599 339 Q 587 349 578 356 C 555 375 528 380 539 352 Z","M 374 251 Q 343 197 303 152 Q 278 124 291 86 Q 295 67 318 77 Q 375 108 391 190 Q 401 221 398 247 Q 394 257 388 258 Q 379 258 374 251 Z","M 702 229 Q 754 183 816 118 Q 832 97 848 93 Q 858 92 865 103 Q 878 116 863 161 Q 845 221 702 261 Q 693 265 691 253 Q 691 240 702 229 Z"],"m":[[[336,738],[351,729],[439,730],[717,773],[765,773]],[[264,761],[290,740],[303,709],[280,507],[249,368],[219,282],[174,189],[118,103],[77,58]],[[574,703],[540,690],[486,584],[466,571]],[[373,563],[404,540],[416,518],[444,379],[463,327]],[[426,556],[448,546],[518,563],[651,583],[704,576],[727,545],[683,376],[687,355]],[[462,447],[468,455],[551,471],[607,478],[629,472]],[[478,352],[511,365],[635,379],[647,387]],[[546,351],[571,332],[583,299],[584,117],[575,75],[561,54],[545,56],[444,95]],[[385,246],[364,187],[307,89]],[[702,249],[764,211],[817,169],[837,143],[849,110]]],"n":["横","撇","撇","竖","横折","横","横","竖钩","撇","点"]}};
+const CH=Object.keys(D), NS="http://www.w3.org/2000/svg";
+const box=document.getElementById("box"), picker=document.getElementById("picker");
+const strokesEl=document.getElementById("strokes"), countEl=document.getElementById("count");
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+let cur=CH[0], stepIdx=0, token=0, audio=null;
+function el(n,a){const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;}
+function grid(){
+  const g=el("g",{stroke:"var(--grid)","stroke-width":6,fill:"none"});
+  g.append(el("rect",{x:12,y:12,width:1000,height:1000,"stroke-width":10}));
+  const d=el("g",{"stroke-dasharray":"24 20"});
+  d.append(el("line",{x1:512,y1:12,x2:512,y2:1012}),el("line",{x1:12,y1:512,x2:1012,y2:512}),
+           el("line",{x1:12,y1:12,x2:1012,y2:1012}),el("line",{x1:1012,y1:12,x2:12,y2:1012}));
+  g.append(d);return g;
+}
+function len(m){let L=0;for(let i=1;i<m.length;i++)L+=Math.hypot(m[i][0]-m[i-1][0],m[i][1]-m[i-1][1]);return L;}
+function draw(c){
+  box.textContent="";box.append(grid());
+  const d=D[c], defs=el("defs",{}), t=el("g",{transform:"translate(0,900) scale(1,-1)"});
+  box.append(defs);
+  d.s.forEach((p,i)=>{t.append(el("path",{d:p,fill:"var(--ghost)"}));const cp=el("clipPath",{id:"c"+i});cp.append(el("path",{d:p}));defs.append(cp);});
+  d.s.forEach((p,i)=>{
+    const m=d.m[i], L=len(m)+60;
+    const line=el("polyline",{points:m.map(q=>q.join(",")).join(" "),fill:"none",stroke:"var(--ink)","stroke-width":180,
+      "stroke-linecap":"round","stroke-linejoin":"round","clip-path":`url(#c${i})`,"stroke-dasharray":`${L} ${L}`,"stroke-dashoffset":L,id:"s"+i});
+    line.dataset.len=L;t.append(line);
+  });
+  box.append(t);
+  strokesEl.innerHTML=d.n.map((n,i)=>`<span id="n${i}">${i+1} ${n}</span>`).join("");
+  countEl.innerHTML=`<b>${c}</b>　一共 ${d.n.length} 画`;
+}
+function hide(i){const s=document.getElementById("s"+i);s.style.transition="none";s.setAttribute("stroke-dashoffset",s.dataset.len);s.setAttribute("stroke","var(--ink)");document.getElementById("n"+i).className="";}
+function animate(i,my){
+  return new Promise(res=>{
+    const s=document.getElementById("s"+i), n=document.getElementById("n"+i);
+    const ms=reduce?1:Math.max(450,Number(s.dataset.len)*0.9);
+    s.setAttribute("stroke","var(--now)");n.className="now";
+    s.style.transition="none";s.setAttribute("stroke-dashoffset",s.dataset.len);s.getBoundingClientRect();
+    s.style.transition=`stroke-dashoffset ${ms}ms linear`;s.setAttribute("stroke-dashoffset",0);
+    setTimeout(()=>{if(my===token){s.setAttribute("stroke","var(--ink)");n.className="done";}res();},ms+250);
+  });
+}
+function reset(){token++;stepIdx=0;D[cur].n.forEach((_,i)=>hide(i));}
+async function play(){reset();const my=token;for(let i=0;i<D[cur].n.length;i++){if(my!==token)return;await animate(i,my);}}
+async function step(){if(stepIdx>=D[cur].n.length)reset();const my=token,i=stepIdx++;await animate(i,my);}
+function say(){try{if(audio)audio.pause();audio=new Audio(`../../audio/zi/${cur.codePointAt(0).toString(16)}.mp3`);audio.play().catch(()=>{});}catch(e){}}
+function mark(){[...picker.children].forEach(b=>b.setAttribute("aria-pressed",b.textContent===cur));}
+function pick(c){cur=c;token++;stepIdx=0;mark();draw(c);play();}
+CH.forEach(c=>{const b=document.createElement("button");b.type="button";b.textContent=c;b.onclick=()=>pick(c);picker.append(b);});
+document.getElementById("play").onclick=play;
+document.getElementById("step").onclick=step;
+document.getElementById("say").onclick=say;
+mark();draw(cur);
+D[cur].n.forEach((_,i)=>{document.getElementById("s"+i).setAttribute("stroke-dashoffset",0);document.getElementById("n"+i).className="done";});
+stepIdx=D[cur].n.length;
+</script>
+</body></html>
